@@ -138,22 +138,15 @@ jobs:
         if: success()
         run: |
           SYNC_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
-          
+
           if [ -f README.md ]; then
-            echo "Current README content (first 5 lines):"
-            head -5 README.md
-            
             if grep -q "Last successful sync:" README.md; then
-              echo "Found existing timestamp line, updating..."
               sed -i "s/\*\*Last successful sync:\*\*.*/\*\*Last successful sync:\*\* ${SYNC_TIME}/" README.md
             else
-              echo "No timestamp found, adding new line..."
-              sed -i "/badge.svg)/a\\\n\*\*Last successful sync:\*\* ${SYNC_TIME}\n" README.md
+              echo "" >> README.md
+              echo "**Last successful sync:** ${SYNC_TIME}" >> README.md
             fi
-            
-            echo "Updated README content (first 5 lines):"
-            head -5 README.md
-            
+
             if ! git diff --quiet README.md; then
               git add README.md
               git commit -m "Update last sync timestamp: ${SYNC_TIME}"
@@ -163,11 +156,21 @@ jobs:
               echo "⚠️ No changes detected in README"
             fi
           fi
-      
+
+      - name: Purge CDN caches
+        if: success()
+        run: |
+          echo "Purging jsDelivr cache..."
+          curl -s "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/latest.json" | python3 -c "import json,sys; r=json.load(sys.stdin); print('jsDelivr:', r.get('status','unknown'))" || echo "⚠️ jsDelivr purge request sent (may take a moment)"
+          curl -s "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/history.json" || true
+          curl -s "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/ftp_history.json" || true
+          echo "✅ CDN cache purge requests sent"
+
       - name: Show result
         run: |
           echo "✅ Sync completed successfully!"
-          echo "📊 View data: https://raw.githubusercontent.com/${{ github.repository }}/main/latest.json"
+          echo "📊 View data (jsDelivr - recommended): https://cdn.jsdelivr.net/gh/${{ github.repository }}@main/latest.json"
+          echo "📊 View data (raw GitHub): https://raw.githubusercontent.com/${{ github.repository }}/main/latest.json"
       
       - name: Notify on failure
         if: failure()
