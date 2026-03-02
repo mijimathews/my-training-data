@@ -12,7 +12,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-03-01T23:45:21.365680",
+    "last_updated": "2026-03-02T01:54:54.286414",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.6.1"
@@ -57,11 +57,11 @@
   },
   "current_status": {
     "fitness": {
-      "ctl": 43.23,
-      "atl": 49.27,
-      "tsb": -6.04,
-      "ramp_rate": -0.55,
-      "fitness_source": "From Intervals.icu API (reflects completed workouts)"
+      "ctl": 42.21,
+      "atl": 42.71,
+      "tsb": -0.5,
+      "ramp_rate": -0.54,
+      "fitness_source": "Decayed from yesterday (today's planned workouts not yet completed)"
     },
     "thresholds": {
       "eftp": 230.7,
@@ -99,19 +99,19 @@
     "current_metrics": {
       "weight_kg": 87.9969,
       "resting_hr": 55,
-      "hrv": 35.242474,
-      "sleep_quality": 1,
-      "sleep_hours": 7.81
+      "hrv": null,
+      "sleep_quality": null,
+      "sleep_hours": null
     }
   },
   "derived_metrics": {
-    "recovery_index": 0.93,
-    "hrv_baseline_7d": 37.9,
-    "rhr_baseline_7d": 55,
-    "hrv_baseline_28d": 37.4,
-    "rhr_baseline_28d": 55.8,
-    "latest_hrv": 35.242474,
-    "latest_rhr": 55,
+    "recovery_index": null,
+    "hrv_baseline_7d": 37.3,
+    "rhr_baseline_7d": 55.2,
+    "hrv_baseline_28d": 37.2,
+    "rhr_baseline_28d": 55.9,
+    "latest_hrv": null,
+    "latest_rhr": null,
     "acwr": 1.02,
     "acwr_interpretation": "optimal",
     "monotony": 1.22,
@@ -123,7 +123,7 @@
     "multi_sport_detected": false,
     "strain": 337.0,
     "stress_tolerance": 2.8,
-    "load_recovery_ratio": 3.0,
+    "load_recovery_ratio": null,
     "tss_7d_total": 276.0,
     "tss_28d_total": 1087.0,
     "zone_distribution_7d": {
@@ -244,13 +244,13 @@
     "p_max": 853,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-03-01T23:45:21.365150",
+    "calculation_timestamp": "2026-03-02T01:54:54.285852",
     "data_quality": {
-      "hrv_data_points": 7,
-      "rhr_data_points": 7,
+      "hrv_data_points": 6,
+      "rhr_data_points": 6,
       "activities_7d": 7,
       "activities_28d": 30,
-      "planned_workouts_7d": 1,
+      "planned_workouts_7d": 3,
       "ftp_history_days": {
         "indoor": 0,
         "outdoor": 0
@@ -606,21 +606,6 @@
   ],
   "wellness_data": [
     {
-      "date": "2026-02-23",
-      "weight_kg": null,
-      "resting_hr": 54,
-      "hrv_rmssd": 41.51848,
-      "hrv_sdnn": null,
-      "sleep_hours": 6.47,
-      "sleep_quality": 2,
-      "sleep_score": 84.0,
-      "mental_energy": null,
-      "fatigue": null,
-      "soreness": null,
-      "avg_sleeping_hr": null,
-      "vo2max": null
-    },
-    {
       "date": "2026-02-24",
       "weight_kg": null,
       "resting_hr": 54,
@@ -704,6 +689,21 @@
       "sleep_hours": 7.81,
       "sleep_quality": 1,
       "sleep_score": 87.0,
+      "mental_energy": null,
+      "fatigue": null,
+      "soreness": null,
+      "avg_sleeping_hr": null,
+      "vo2max": null
+    },
+    {
+      "date": "2026-03-02",
+      "weight_kg": null,
+      "resting_hr": null,
+      "hrv_rmssd": null,
+      "hrv_sdnn": null,
+      "sleep_hours": null,
+      "sleep_quality": null,
+      "sleep_score": null,
       "mental_energy": null,
       "fatigue": null,
       "soreness": null,
@@ -810,14 +810,41 @@
       "description": null,
       "planned_tss": null,
       "duration_hours": 0.0
+    },
+    {
+      "id": "event_12",
+      "date": "2026-04-13T00:00:00",
+      "name": "Planned Workout",
+      "type": "NOTE",
+      "description": "Focus on easier efforts, reduced volume, and allowing your body to adapt to training stress",
+      "planned_tss": null,
+      "duration_hours": 0.0
+    },
+    {
+      "id": "event_13",
+      "date": "2026-04-13T00:00:00",
+      "name": "Planned Workout",
+      "type": "TARGET",
+      "description": null,
+      "planned_tss": null,
+      "duration_hours": 0.0
+    },
+    {
+      "id": "event_14",
+      "date": "2026-04-13T00:00:00",
+      "name": "Planned Workout",
+      "type": "NOTE",
+      "description": "Focus on easier efforts, reduced volume, and allowing your body to adapt to training stress",
+      "planned_tss": null,
+      "duration_hours": 0.0
     }
   ],
   "weekly_summary": {
     "total_training_hours": 9.59,
     "total_tss": 276,
     "activities_count": 7,
-    "avg_hrv": 37.9,
-    "avg_resting_hr": 55.0
+    "avg_hrv": 37.3,
+    "avg_resting_hr": 55.2
   },
   "race_calendar": {
     "next_race": null,
