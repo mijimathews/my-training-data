@@ -64,12 +64,13 @@ jobs:
           echo "  ATHLETE_ID: ${ATHLETE_ID:0:5}..."
           echo "  GITHUB_REPO: $GITHUB_REPO"
           echo ""
-          echo "🚀 Running sync script..."
+          echo "🚀 Running sync script (local file mode)..."
           python sync.py \
             --athlete-id "$ATHLETE_ID" \
             --intervals-key "$INTERVALS_KEY" \
             --github-token "$GITHUB_TOKEN" \
             --github-repo "$GITHUB_REPO" \
+            --output latest.json \
             --days 7 || {
               echo "❌ Sync script failed with exit code $?"
               exit 1
