@@ -14,7 +14,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-03-04T00:37:52.064880",
+    "last_updated": "2026-03-04T11:32:08.507877",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.6.5"
@@ -31,9 +31,11 @@
     }
   ],
   "history": {
-    "available": false,
-    "history_confidence": "low",
-    "note": "No history.json available. Longitudinal analysis limited to current 28-day window."
+    "available": true,
+    "last_generated": "2026-03-04",
+    "age_days": 0,
+    "total_months": 12,
+    "history_confidence": "high"
   },
   "summary": {
     "period_description": "Last 7 days of training (including today)",
@@ -98,21 +100,21 @@
     },
     "current_metrics": {
       "weight_kg": 87.9969,
-      "resting_hr": 54,
-      "hrv": null,
-      "sleep_quality": null,
-      "sleep_hours": null,
-      "sleep_formatted": null
+      "resting_hr": 58,
+      "hrv": 33.73802,
+      "sleep_quality": 2,
+      "sleep_hours": 6.74,
+      "sleep_formatted": "6h44m"
     }
   },
   "derived_metrics": {
-    "recovery_index": null,
-    "hrv_baseline_7d": 37.9,
-    "rhr_baseline_7d": 55.2,
-    "hrv_baseline_28d": 37.9,
-    "rhr_baseline_28d": 55.7,
-    "latest_hrv": null,
-    "latest_rhr": null,
+    "recovery_index": 0.87,
+    "hrv_baseline_7d": 37.3,
+    "rhr_baseline_7d": 55.6,
+    "hrv_baseline_28d": 37.8,
+    "rhr_baseline_28d": 55.8,
+    "latest_hrv": 33.73802,
+    "latest_rhr": 58,
     "acwr": 0.87,
     "acwr_interpretation": "optimal",
     "monotony": 1.0,
@@ -124,7 +126,7 @@
     "multi_sport_detected": false,
     "strain": 242.0,
     "stress_tolerance": 2.4,
-    "load_recovery_ratio": null,
+    "load_recovery_ratio": 2.8,
     "tss_7d_total": 242.0,
     "tss_28d_total": 1118.0,
     "zone_distribution_7d": {
@@ -246,10 +248,10 @@
     "p_max": 851,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-03-04T00:37:52.064682",
+    "calculation_timestamp": "2026-03-04T11:32:08.507167",
     "data_quality": {
-      "hrv_data_points": 6,
-      "rhr_data_points": 6,
+      "hrv_data_points": 7,
+      "rhr_data_points": 7,
       "activities_7d": 6,
       "activities_28d": 29,
       "planned_workouts_7d": 3,
@@ -654,13 +656,13 @@
     {
       "date": "2026-03-04",
       "weight_kg": null,
-      "resting_hr": null,
-      "hrv_rmssd": null,
+      "resting_hr": 58,
+      "hrv_rmssd": 33.73802,
       "hrv_sdnn": null,
-      "sleep_hours": null,
-      "sleep_formatted": null,
-      "sleep_quality": null,
-      "sleep_score": null,
+      "sleep_hours": 6.74,
+      "sleep_formatted": "6h44m",
+      "sleep_quality": 2,
+      "sleep_score": 84.0,
       "mental_energy": null,
       "fatigue": null,
       "soreness": null,
@@ -669,6 +671,39 @@
     }
   ],
   "planned_workouts": [
+    {
+      "id": 96510355,
+      "date": "2026-03-05",
+      "name": "3x10m 85% FTP 65RPM by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 80,
+      "duration_hours": 1.5,
+      "duration_formatted": "1h30m",
+      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 3\u00d710m @195W / 5m rec | 32m @149W",
+      "description": "-5m ramp 50-65% FTP\n\n3x\n-30s 100% FTP\n-30s 55% FTP\n\n-5m 60% FTP\n\n3x\n-10m 85% FTP 65RPM\n-5m 60% FTP\n\n-32m 65% FTP"
+    },
+    {
+      "id": 96510365,
+      "date": "2026-03-07",
+      "name": "Saturday Long Ride by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 166,
+      "duration_hours": 4.0,
+      "duration_formatted": "4h",
+      "workout_summary": null,
+      "description": "-5m ramp 50-65% FTP\n-230m 65% FTP\n-5m 50% FTP"
+    },
+    {
+      "id": 96510366,
+      "date": "2026-03-08",
+      "name": "Recovery Foundation by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 22,
+      "duration_hours": 0.72,
+      "duration_formatted": "43m",
+      "workout_summary": null,
+      "description": "-43m 55% FTP"
+    },
     {
       "id": 93690058,
       "date": "2026-03-09",
@@ -681,6 +716,60 @@
       "description": ""
     },
     {
+      "id": 96510367,
+      "date": "2026-03-10",
+      "name": "5x3m 115% FTP by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 113,
+      "duration_hours": 2.0,
+      "duration_formatted": "2h",
+      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 5\u00d73m @264W / 3m rec | 1h17m @138W",
+      "description": "-5m ramp 50-65% FTP\n\n3x\n-30s 100% FTP\n-30s 55% FTP\n\n-5m 60% FTP\n\n5x\n-3m 115% FTP\n-3m 55% FTP\n\n-77m 60% FTP"
+    },
+    {
+      "id": 96510369,
+      "date": "2026-03-11",
+      "name": "Aerobic Maintenance by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 76,
+      "duration_hours": 1.83,
+      "duration_formatted": "1h50m",
+      "workout_summary": null,
+      "description": "-5m ramp 50-65% FTP\n-100m 65% FTP\n-5m 55% FTP"
+    },
+    {
+      "id": 96510378,
+      "date": "2026-03-12",
+      "name": "2x20m 95% FTP by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 92,
+      "duration_hours": 1.33,
+      "duration_formatted": "1h20m",
+      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 2\u00d720m @218W / 10m rec | 7m @126W"
+    },
+    {
+      "id": 96510379,
+      "date": "2026-03-14",
+      "name": "Endurance Build by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 166,
+      "duration_hours": 4.0,
+      "duration_formatted": "4h",
+      "workout_summary": null,
+      "description_preview": "-5m ramp 50-65% FTP\n-230m 65% FTP\n-5m 50% FTP"
+    },
+    {
+      "id": 96510356,
+      "date": "2026-03-15",
+      "name": "Sunday Endurance by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 31,
+      "duration_hours": 0.87,
+      "duration_formatted": "52m",
+      "workout_summary": null,
+      "description_preview": "-52m 60% FTP"
+    },
+    {
       "id": 93690059,
       "date": "2026-03-16",
       "name": "Weekly",
@@ -690,6 +779,59 @@
       "duration_formatted": "0s",
       "workout_summary": null,
       "description_preview": null
+    },
+    {
+      "id": 96510380,
+      "date": "2026-03-17",
+      "name": "3x10m 100% FTP 65RPM by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 118,
+      "duration_hours": 2.0,
+      "duration_formatted": "2h",
+      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 3\u00d710m @230W / 5m rec | 1h2m @138W"
+    },
+    {
+      "id": 96510381,
+      "date": "2026-03-18",
+      "name": "Steady Endurance by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 82,
+      "duration_hours": 2.0,
+      "duration_formatted": "2h",
+      "workout_summary": null,
+      "description_preview": "-110m 65% FTP\n-10m 55% FTP"
+    },
+    {
+      "id": 96510364,
+      "date": "2026-03-19",
+      "name": "4x10m 85% FTP 65RPM by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 83,
+      "duration_hours": 1.5,
+      "duration_formatted": "1h30m",
+      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 4\u00d710m @195W / 5m rec | 17m @138W"
+    },
+    {
+      "id": 96510382,
+      "date": "2026-03-21",
+      "name": "Long Saturday by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 186,
+      "duration_hours": 4.5,
+      "duration_formatted": "4h30m",
+      "workout_summary": null,
+      "description_preview": "-260m 65% FTP\n-10m 50% FTP"
+    },
+    {
+      "id": 96510383,
+      "date": "2026-03-22",
+      "name": "Active Recovery by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 13,
+      "duration_hours": 0.5,
+      "duration_formatted": "30m",
+      "workout_summary": null,
+      "description_preview": "-30m 50% FTP"
     },
     {
       "id": 93689831,
@@ -736,6 +878,61 @@
       "description_preview": "Focus on easier efforts, reduced volume, and allowing your body to adapt to training stress"
     },
     {
+      "id": 96510353,
+      "date": "2026-03-24",
+      "name": "Maintenance Threshold by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 64,
+      "duration_hours": 1.25,
+      "duration_formatted": "1h15m",
+      "workout_summary": null,
+      "description_preview": "-5m ramp 50-65% FTP\n-20m 90% FTP\n-50m 60% FTP"
+    },
+    {
+      "id": 96510422,
+      "date": "2026-03-25",
+      "name": "Recovery Spin by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 30,
+      "duration_hours": 1.0,
+      "duration_formatted": "1h",
+      "workout_summary": null,
+      "description_preview": "-60m 55% FTP"
+    },
+    {
+      "id": 96510384,
+      "date": "2026-03-26",
+      "name": "Easy Tempo by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 47,
+      "duration_hours": 1.0,
+      "duration_formatted": "1h",
+      "workout_summary": null,
+      "description_preview": "-5m ramp 50-65% FTP\n-20m 80% FTP\n-35m 60% FTP"
+    },
+    {
+      "id": 96510385,
+      "date": "2026-03-28",
+      "name": "Saturday Deload Ride by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 108,
+      "duration_hours": 3.0,
+      "duration_formatted": "3h",
+      "workout_summary": null,
+      "description_preview": "-180m 60% FTP"
+    },
+    {
+      "id": 96510386,
+      "date": "2026-03-29",
+      "name": "Sunday Recovery by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 26,
+      "duration_hours": 1.05,
+      "duration_formatted": "1h3m",
+      "workout_summary": null,
+      "description_preview": "-63m 50% FTP"
+    },
+    {
       "id": 93690062,
       "date": "2026-03-30",
       "name": "Weekly",
@@ -747,6 +944,59 @@
       "description_preview": null
     },
     {
+      "id": 96510388,
+      "date": "2026-03-31",
+      "name": "6x3m 118% FTP by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 124,
+      "duration_hours": 2.0,
+      "duration_formatted": "2h",
+      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 6\u00d73m @271W / 3m rec | 1h11m @138W"
+    },
+    {
+      "id": 96510389,
+      "date": "2026-04-01",
+      "name": "Build Aerobic by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 90,
+      "duration_hours": 2.0,
+      "duration_formatted": "2h",
+      "workout_summary": null,
+      "description_preview": "-110m 68% FTP\n-10m 55% FTP"
+    },
+    {
+      "id": 96510352,
+      "date": "2026-04-02",
+      "name": "4x15m 95% FTP by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 126,
+      "duration_hours": 1.75,
+      "duration_formatted": "1h45m",
+      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 4\u00d715m @218W / 5m rec | 12m @126W"
+    },
+    {
+      "id": 96510360,
+      "date": "2026-04-04",
+      "name": "Long Build Ride by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 189,
+      "duration_hours": 4.5,
+      "duration_formatted": "4h30m",
+      "workout_summary": null,
+      "description_preview": "-270m 65% FTP"
+    },
+    {
+      "id": 96510390,
+      "date": "2026-04-05",
+      "name": "Sunday Base by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 20,
+      "duration_hours": 0.55,
+      "duration_formatted": "33m",
+      "workout_summary": null,
+      "description_preview": "-33m 60% FTP"
+    },
+    {
       "id": 93690063,
       "date": "2026-04-06",
       "name": "Weekly",
@@ -756,6 +1006,59 @@
       "duration_formatted": "0s",
       "workout_summary": null,
       "description_preview": null
+    },
+    {
+      "id": 96510391,
+      "date": "2026-04-07",
+      "name": "4x10m 100% FTP 65RPM by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 129,
+      "duration_hours": 2.0,
+      "duration_formatted": "2h",
+      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 4\u00d710m @230W / 5m rec | 47m @138W"
+    },
+    {
+      "id": 96510392,
+      "date": "2026-04-08",
+      "name": "Endurance Wednesday by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 91,
+      "duration_hours": 2.0,
+      "duration_formatted": "2h",
+      "workout_summary": null,
+      "description_preview": "-115m 68% FTP\n-5m 55% FTP"
+    },
+    {
+      "id": 96510393,
+      "date": "2026-04-09",
+      "name": "2x20m 88% FTP 65RPM by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 87,
+      "duration_hours": 1.5,
+      "duration_formatted": "1h30m",
+      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 4\u00d710m @202W / 5m rec | 17m @126W"
+    },
+    {
+      "id": 96510394,
+      "date": "2026-04-11",
+      "name": "Specific Gran Fondo Endurance by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 200,
+      "duration_hours": 4.83,
+      "duration_formatted": "4h50m",
+      "workout_summary": null,
+      "description_preview": "-280m 65% FTP\n-10m 50% FTP"
+    },
+    {
+      "id": 96510354,
+      "date": "2026-04-12",
+      "name": "Recovery Ride by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 15,
+      "duration_hours": 0.6,
+      "duration_formatted": "36m",
+      "workout_summary": null,
+      "description_preview": "-36m 50% FTP"
     },
     {
       "id": 93689836,
@@ -789,23 +1092,45 @@
       "duration_formatted": "0s",
       "workout_summary": null,
       "description_preview": "Focus on easier efforts, reduced volume, and allowing your body to adapt to training stress"
+    },
+    {
+      "id": 96510370,
+      "date": "2026-04-14",
+      "name": "Step Ramp FTP Test by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 185,
+      "duration_hours": 2.0,
+      "duration_formatted": "2h",
+      "workout_summary": null,
+      "description_preview": "-5m 50% FTP\n-1m 65% FTP\n-1m 70% FTP"
+    },
+    {
+      "id": 96510372,
+      "date": "2026-04-15",
+      "name": "Mid-week Long Aerobic by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 92,
+      "duration_hours": 2.0,
+      "duration_formatted": "2h",
+      "workout_summary": null,
+      "description_preview": "-120m 68% FTP"
     }
   ],
   "workout_summary_stats": {
-    "attempted": 0,
-    "success": 0,
-    "patternA": 0,
+    "attempted": 30,
+    "success": 9,
+    "patternA": 9,
     "patternB": 0,
     "bail_no_workout_doc": 5,
-    "bail_no_match": 0
+    "bail_no_match": 21
   },
   "weekly_summary": {
     "total_training_hours": 8.12,
     "total_training_formatted": "8h7m",
     "total_tss": 242,
     "activities_count": 6,
-    "avg_hrv": 37.9,
-    "avg_resting_hr": 55.2
+    "avg_hrv": 37.3,
+    "avg_resting_hr": 55.6
   },
   "race_calendar": {
     "next_race": null,
