@@ -85,27 +85,40 @@ jobs:
             echo "⚠️ latest.json not found - might be no changes detected"
           fi
       
+      - name: Configure git
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
       - name: Archive latest.json with timestamp
         if: success()
         run: |
           # Create archive directory if it doesn't exist
           mkdir -p archive
-          
+
           # Get timestamp
           TIMESTAMP=$(date -u +"%Y%m%d_%H%M%S")
-          
+
           # Copy latest.json to archive if it exists
           if [ -f latest.json ]; then
             cp latest.json "archive/${TIMESTAMP}.json"
             echo "✅ Archived to archive/${TIMESTAMP}.json"
-            
-            # Configure git
-            git config --local user.email "github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
-            
-            # Stage ALL generated files BEFORE pulling to prevent
-            # "untracked working tree files would be overwritten" errors
-            git add archive/
+
+            # Save freshly synced files before pulling
+            cp latest.json /tmp/latest.json.fresh
+            if [ -f history.json ]; then cp history.json /tmp/history.json.fresh; fi
+            if [ -f ftp_history.json ]; then cp ftp_history.json /tmp/ftp_history.json.fresh; fi
+
+            # Pull latest remote changes first (clean working tree)
+            git pull --rebase origin main || true
+
+            # Restore our freshly synced files (ours are always newest)
+            cp /tmp/latest.json.fresh latest.json
+            if [ -f /tmp/history.json.fresh ]; then cp /tmp/history.json.fresh history.json; fi
+            if [ -f /tmp/ftp_history.json.fresh ]; then cp /tmp/ftp_history.json.fresh ftp_history.json; fi
+
+            # Stage all generated files
+            git add latest.json archive/
             if [ -f ftp_history.json ]; then
               git add ftp_history.json
               echo "✅ Staged ftp_history.json"
@@ -114,14 +127,7 @@ jobs:
               git add history.json
               echo "✅ Staged history.json"
             fi
-            if [ -f latest.json ]; then
-              git add latest.json
-              echo "✅ Staged latest.json"
-            fi
-            
-            # Now pull - autostash will safely stash staged changes
-            git pull --rebase --autostash origin main
-            
+
             # Only commit if there are changes
             if ! git diff --staged --quiet; then
               git commit -m "Archive training data + FTP history - $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
@@ -156,6 +162,7 @@ jobs:
             
             if ! git diff --quiet README.md; then
               git add README.md
+              git pull --rebase origin main || true
               git commit -m "Update last sync timestamp: ${SYNC_TIME}"
               git push
               echo "✅ README updated with sync time: ${SYNC_TIME}"
