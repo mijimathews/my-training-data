@@ -32,7 +32,7 @@
 | Improve W/kg to 3.0 | 2026 |
 
 **Current Phase:** Aerobic base building
-**Training Style:** Polarized (~10h/week)
+**Training Style:** Polarized (~10h/week, progressing to 12h/week)
 
 ---
 
@@ -58,6 +58,7 @@
 ### Weekly Volume Target
 
 **Baseline:** 10 hours/week (± 1 hour)
+**Volume progression target:** 12 hours/week by race week (increase max 10% per week)
 **Peak phases:** Up to 12 hours (requires RI >= 0.8, HRV within 10%)
 
 ### Normal Weekly Schedule
