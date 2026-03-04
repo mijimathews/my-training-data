@@ -7,10 +7,6 @@ on:
     # For every 15 minutes, use: '*/15 * * * *'
   workflow_dispatch:  # Allow manual trigger
 
-concurrency:
-  group: sync-training-data
-  cancel-in-progress: false
-
 permissions:
   contents: write
   issues: write
@@ -68,13 +64,12 @@ jobs:
           echo "  ATHLETE_ID: ${ATHLETE_ID:0:5}..."
           echo "  GITHUB_REPO: $GITHUB_REPO"
           echo ""
-          echo "🚀 Running sync script (local file mode)..."
+          echo "🚀 Running sync script..."
           python sync.py \
             --athlete-id "$ATHLETE_ID" \
             --intervals-key "$INTERVALS_KEY" \
             --github-token "$GITHUB_TOKEN" \
             --github-repo "$GITHUB_REPO" \
-            --output latest.json \
             --days 7 || {
               echo "❌ Sync script failed with exit code $?"
               exit 1
@@ -108,21 +103,9 @@ jobs:
             git config --local user.email "github-actions[bot]@users.noreply.github.com"
             git config --local user.name "github-actions[bot]"
             
-            # Save freshly synced files before pulling
-            cp latest.json /tmp/latest.json.fresh
-            if [ -f history.json ]; then cp history.json /tmp/history.json.fresh; fi
-            if [ -f ftp_history.json ]; then cp ftp_history.json /tmp/ftp_history.json.fresh; fi
-
-            # Pull latest remote changes first (clean working tree)
-            git pull --rebase origin main || true
-
-            # Restore our freshly synced files (ours are always newest)
-            cp /tmp/latest.json.fresh latest.json
-            if [ -f /tmp/history.json.fresh ]; then cp /tmp/history.json.fresh history.json; fi
-            if [ -f /tmp/ftp_history.json.fresh ]; then cp /tmp/ftp_history.json.fresh ftp_history.json; fi
-
-            # Stage all generated files
-            git add latest.json archive/
+            # Stage ALL generated files BEFORE pulling to prevent
+            # "untracked working tree files would be overwritten" errors
+            git add archive/
             if [ -f ftp_history.json ]; then
               git add ftp_history.json
               echo "✅ Staged ftp_history.json"
@@ -131,7 +114,14 @@ jobs:
               git add history.json
               echo "✅ Staged history.json"
             fi
-
+            if [ -f latest.json ]; then
+              git add latest.json
+              echo "✅ Staged latest.json"
+            fi
+            
+            # Now pull - autostash will safely stash staged changes
+            git pull --rebase --autostash origin main
+            
             # Only commit if there are changes
             if ! git diff --staged --quiet; then
               git commit -m "Archive training data + FTP history - $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
@@ -148,18 +138,24 @@ jobs:
         if: success()
         run: |
           SYNC_TIME=$(date -u +"%Y-%m-%d %H:%M:%S UTC")
-
+          
           if [ -f README.md ]; then
+            echo "Current README content (first 5 lines):"
+            head -5 README.md
+            
             if grep -q "Last successful sync:" README.md; then
+              echo "Found existing timestamp line, updating..."
               sed -i "s/\*\*Last successful sync:\*\*.*/\*\*Last successful sync:\*\* ${SYNC_TIME}/" README.md
             else
-              echo "" >> README.md
-              echo "**Last successful sync:** ${SYNC_TIME}" >> README.md
+              echo "No timestamp found, adding new line..."
+              sed -i "/badge.svg)/a\\\n\*\*Last successful sync:\*\* ${SYNC_TIME}\n" README.md
             fi
-
+            
+            echo "Updated README content (first 5 lines):"
+            head -5 README.md
+            
             if ! git diff --quiet README.md; then
               git add README.md
-              git pull --rebase origin main || true
               git commit -m "Update last sync timestamp: ${SYNC_TIME}"
               git push
               echo "✅ README updated with sync time: ${SYNC_TIME}"
@@ -167,21 +163,11 @@ jobs:
               echo "⚠️ No changes detected in README"
             fi
           fi
-
-      - name: Purge CDN caches
-        if: success()
-        run: |
-          echo "Purging jsDelivr cache..."
-          curl -s "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/latest.json" | python3 -c "import json,sys; r=json.load(sys.stdin); print('jsDelivr:', r.get('status','unknown'))" || echo "⚠️ jsDelivr purge request sent (may take a moment)"
-          curl -s "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/history.json" || true
-          curl -s "https://purge.jsdelivr.net/gh/${{ github.repository }}@main/ftp_history.json" || true
-          echo "✅ CDN cache purge requests sent"
-
+      
       - name: Show result
         run: |
           echo "✅ Sync completed successfully!"
-          echo "📊 View data (jsDelivr - recommended): https://cdn.jsdelivr.net/gh/${{ github.repository }}@main/latest.json"
-          echo "📊 View data (raw GitHub): https://raw.githubusercontent.com/${{ github.repository }}/main/latest.json"
+          echo "📊 View data: https://raw.githubusercontent.com/${{ github.repository }}/main/latest.json"
       
       - name: Notify on failure
         if: failure()

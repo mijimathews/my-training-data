@@ -8,16 +8,18 @@
 
 ## Purpose & Scope
 
-This document is a **menu of session templates**, not a training plan. It provides structured workout formats that an AI coaching system can select from when generating or recommending sessions under Section 11 B.
+This document is a **library of session templates for inspiration**, not a rigid prescription list. It provides structured workout formats that an AI coaching system can reference when designing sessions under Section 11 B.
 
-**Section 11 decides *when* and *what type*. This document provides *how*.**
+**Templates are starting points. The AI must adapt structure, duration, intensity, and recovery to the individual athlete's current fitness, goals, phase, and constraints.** Copy-pasting a template without customization is the wrong approach — a good coach never prescribes the same workout the same way to every athlete.
+
+**Section 11 decides *when* and *what type*. This document provides *how* — as a starting point.**
 
 ### Design Principles
 
 - **Section 11 A readiness logic always has final say.** No template in this document overrides go/modify/skip decisions.
 - **Zone references use the athlete's Intervals.icu zone configuration.** Power targets are expressed as zone ranges, not hardcoded %FTP values, because athlete zones are individually calibrated and update with fitness changes.
 - **This is a living catalog.** Athletes and coaches should adapt, extend, or replace templates to match individual needs, equipment, and sport demands.
-- **Templates are starting points.** The AI should apply Section 11's progression pathways, regression rules, and load constraints when selecting and scaling these sessions.
+- **Templates are inspiration, not prescription.** The AI should use these as structural references, then adjust interval count, duration, rest periods, and intensity to match the athlete's current state. A Sweet Spot 3x15 might become 3x12 for a fatigued athlete or 3x18 for a fresh one approaching peak.
 - **Optional/advanced templates are clearly marked.** Templates flagged as *(Optional)* or *(Advanced)* are not necessary for every athlete and should not be prescribed by default. The AI should only select these when the athlete's goals, phase, and readiness specifically warrant them.
 
 ---
