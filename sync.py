@@ -3573,8 +3573,8 @@ class IntervalsSync:
                 "name": evt.get("name", ""),
                 "type": evt.get("category", ""),
                 "planned_tss": evt.get("icu_training_load"),
-                "duration_hours": round(evt.get("moving_time", 0) / 3600, 2),
-                "duration_formatted": self._format_duration(int(evt.get("moving_time", 0))),
+                "duration_hours": round((evt.get("moving_time") or 0) / 3600, 2),
+                "duration_formatted": self._format_duration(int(evt.get("moving_time") or 0)),
                 "workout_summary": summary
             }
 
@@ -3615,9 +3615,9 @@ class IntervalsSync:
         race_categories = {"RACE_A", "RACE_B", "RACE_C"}
         race_events = []
         for evt in future_events:
-            cat = evt.get("category", "")
+            cat = evt.get("category") or ""
             if cat in race_categories:
-                start = evt.get("start_date_local", "")[:10]
+                start = (evt.get("start_date_local") or "")[:10]
                 if start:
                     try:
                         evt_date = datetime.strptime(start, "%Y-%m-%d").date()
