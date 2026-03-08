@@ -38,12 +38,28 @@ def whoop_get_access_token():
         "refresh_token": WHOOP_REFRESH_TOKEN,
         "client_id": WHOOP_CLIENT_ID,
         "client_secret": WHOOP_CLIENT_SECRET,
+        "scope": "offline read:recovery read:sleep read:workout read:body_measurement read:cycles",
     }, timeout=15)
     resp.raise_for_status()
     tokens = resp.json()
     new_refresh = tokens.get("refresh_token", WHOOP_REFRESH_TOKEN)
     if new_refresh != WHOOP_REFRESH_TOKEN:
-        print("::warning::WHOOP refresh token rotated — update WHOOP_REFRESH_TOKEN secret.")
+        print(f"::warning::WHOOP refresh token rotated — update WHOOP_REFRESH_TOKEN secret.")
+        # Auto-update via gh CLI if available
+        gh_token = os.environ.get("GITHUB_TOKEN")
+        gh_repo = os.environ.get("GITHUB_REPOSITORY")
+        if gh_token and gh_repo:
+            import subprocess
+            result = subprocess.run(
+                ["gh", "secret", "set", "WHOOP_REFRESH_TOKEN",
+                 "--repo", gh_repo, "--body", new_refresh],
+                capture_output=True, text=True,
+                env={**os.environ, "GH_TOKEN": gh_token},
+            )
+            if result.returncode == 0:
+                print("  Auto-updated WHOOP_REFRESH_TOKEN secret.")
+            else:
+                print(f"  Failed to auto-update secret: {result.stderr}")
     return tokens["access_token"]
 
 
@@ -85,7 +101,7 @@ def sync_recovery_and_sleep(access_token, days=3):
     records = cycles.get("records", [])
 
     # Get sleep records
-    sleeps = whoop_get(access_token, "/activity/sleep", params={"limit": days})
+    sleeps = whoop_get(access_token, "/sleep", params={"limit": days})
     sleep_records = sleeps.get("records", [])
     sleep_by_date = {}
     for s in sleep_records:

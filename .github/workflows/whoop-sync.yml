@@ -43,4 +43,6 @@ jobs:
           INTERVALS_KEY: ${{ secrets.INTERVALS_KEY }}
           ATHLETE_ID: ${{ secrets.ATHLETE_ID }}
           SYNC_DAYS: ${{ inputs.sync_days || '3' }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
         run: python whoop_sync.py
