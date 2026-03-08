@@ -1,0 +1,46 @@
+name: WHOOP → Intervals.icu Sync
+
+on:
+  schedule:
+    # Run every 6 hours
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      sync_days:
+        description: 'Number of days to sync'
+        required: false
+        default: '3'
+
+concurrency:
+  group: whoop-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Verify secrets
+        run: |
+          if [ -z "${{ secrets.WHOOP_CLIENT_ID }}" ]; then echo "Missing WHOOP_CLIENT_ID"; exit 1; fi
+          if [ -z "${{ secrets.WHOOP_CLIENT_SECRET }}" ]; then echo "Missing WHOOP_CLIENT_SECRET"; exit 1; fi
+          if [ -z "${{ secrets.WHOOP_REFRESH_TOKEN }}" ]; then echo "Missing WHOOP_REFRESH_TOKEN"; exit 1; fi
+          echo "All WHOOP secrets configured"
+
+      - name: Sync WHOOP to Intervals.icu
+        env:
+          WHOOP_CLIENT_ID: ${{ secrets.WHOOP_CLIENT_ID }}
+          WHOOP_CLIENT_SECRET: ${{ secrets.WHOOP_CLIENT_SECRET }}
+          WHOOP_REFRESH_TOKEN: ${{ secrets.WHOOP_REFRESH_TOKEN }}
+          INTERVALS_KEY: ${{ secrets.INTERVALS_KEY }}
+          ATHLETE_ID: ${{ secrets.ATHLETE_ID }}
+          SYNC_DAYS: ${{ inputs.sync_days || '3' }}
+        run: python whoop_sync.py
