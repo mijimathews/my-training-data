@@ -18,7 +18,7 @@ from datetime import datetime, timezone, timedelta
 
 # ── Config ──────────────────────────────────────
 
-WHOOP_API = "https://api.prod.whoop.com/developer/v1"
+WHOOP_API = "https://api.prod.whoop.com/developer/v2"
 WHOOP_TOKEN_URL = "https://api.prod.whoop.com/oauth/oauth2/token"
 INTERVALS_API = "https://intervals.icu/api/v1"
 
@@ -65,12 +65,16 @@ def whoop_get_access_token():
 
 def whoop_get(access_token, path, params=None):
     """Make authenticated WHOOP API request."""
+    url = f"{WHOOP_API}{path}"
     resp = requests.get(
-        f"{WHOOP_API}{path}",
+        url,
         headers={"Authorization": f"Bearer {access_token}"},
         params=params,
         timeout=15,
     )
+    if resp.status_code != 200:
+        print(f"  WHOOP API error: {resp.status_code} {url}")
+        print(f"  Response: {resp.text[:500]}")
     resp.raise_for_status()
     return resp.json()
 
@@ -86,6 +90,10 @@ def intervals_put_wellness(date_str, data):
         auth=("API_KEY", INTERVALS_KEY),
         timeout=15,
     )
+    if resp.status_code != 200:
+        print(f"  Intervals API error: {resp.status_code}")
+        print(f"  Payload: {data}")
+        print(f"  Response: {resp.text[:500]}")
     resp.raise_for_status()
     return resp.json()
 
@@ -96,18 +104,27 @@ def sync_recovery_and_sleep(access_token, days=3):
     """Sync WHOOP recovery + sleep → Intervals.icu wellness."""
     print(f"Syncing {days} days of recovery & sleep data...")
 
-    # Get recovery cycles
-    cycles = whoop_get(access_token, "/cycle", params={"limit": days})
-    records = cycles.get("records", [])
+    # Get recovery records (v2 returns them directly)
+    recoveries = whoop_get(access_token, "/recovery", params={"limit": days})
+    recovery_records = recoveries.get("records", [])
+    recovery_by_cycle = {}
+    for rec in recovery_records:
+        cid = rec.get("cycle_id")
+        if cid:
+            recovery_by_cycle[cid] = rec
 
     # Get sleep records
-    sleeps = whoop_get(access_token, "/sleep", params={"limit": days})
+    sleeps = whoop_get(access_token, "/activity/sleep", params={"limit": days})
     sleep_records = sleeps.get("records", [])
     sleep_by_date = {}
     for s in sleep_records:
         d = s.get("start", "")[:10]
         if d:
             sleep_by_date[d] = s
+
+    # Get cycles for dates and strain
+    cycles = whoop_get(access_token, "/cycle", params={"limit": days})
+    records = cycles.get("records", [])
 
     synced = 0
     for cycle in records:
@@ -116,11 +133,8 @@ def sync_recovery_and_sleep(access_token, days=3):
         if not date_str:
             continue
 
-        # Get recovery for this cycle
-        try:
-            recovery = whoop_get(access_token, f"/cycle/{cycle_id}/recovery")
-        except requests.HTTPError:
-            recovery = None
+        # Look up recovery for this cycle
+        recovery = recovery_by_cycle.get(cycle_id)
 
         # Build wellness payload
         wellness = {}
@@ -129,7 +143,7 @@ def sync_recovery_and_sleep(access_token, days=3):
         if score.get("resting_heart_rate"):
             wellness["restingHR"] = score["resting_heart_rate"]
         if score.get("hrv_rmssd_milli"):
-            wellness["hrvRMSSD"] = round(score["hrv_rmssd_milli"], 1)
+            wellness["hrv"] = round(score["hrv_rmssd_milli"], 1)
         if score.get("spo2_percentage"):
             wellness["spO2"] = round(score["spo2_percentage"], 1)
 
@@ -155,18 +169,18 @@ def sync_recovery_and_sleep(access_token, days=3):
             ss = sleep["score"]
             total_sleep_ms = ss.get("total_sleep_time_milli", 0)
             if total_sleep_ms:
-                wellness["sleepTime"] = round(total_sleep_ms / 1000)  # seconds
+                wellness["sleepSecs"] = round(total_sleep_ms / 1000)  # seconds
             efficiency = ss.get("sleep_efficiency_percentage")
             if efficiency:
-                # Map efficiency (0-100%) to sleep quality (1-5)
-                wellness["sleepQuality"] = max(1, min(5, round(efficiency / 20)))
+                # Map efficiency (0-100%) to sleep quality (1-4)
+                wellness["sleepQuality"] = max(1, min(4, round(efficiency / 25)))
 
         if wellness:
             try:
                 intervals_put_wellness(date_str, wellness)
                 print(f"  {date_str}: OK"
                       f" (RHR={wellness.get('restingHR', '-')}"
-                      f", HRV={wellness.get('hrvRMSSD', '-')}"
+                      f", HRV={wellness.get('hrv', '-')}"
                       f", Recovery={recovery_pct or '-'}%"
                       f", Sleep={round(total_sleep_ms/3600000, 1) if sleep and sleep.get('score') else '-'}h)")
                 synced += 1
