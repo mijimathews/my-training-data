@@ -15,6 +15,9 @@ concurrency:
   group: whoop-sync
   cancel-in-progress: false
 
+permissions:
+  contents: write
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -32,7 +35,6 @@ jobs:
         run: |
           if [ -z "${{ secrets.WHOOP_CLIENT_ID }}" ]; then echo "Missing WHOOP_CLIENT_ID"; exit 1; fi
           if [ -z "${{ secrets.WHOOP_CLIENT_SECRET }}" ]; then echo "Missing WHOOP_CLIENT_SECRET"; exit 1; fi
-          if [ -z "${{ secrets.WHOOP_REFRESH_TOKEN }}" ]; then echo "Missing WHOOP_REFRESH_TOKEN"; exit 1; fi
           echo "All WHOOP secrets configured"
 
       - name: Sync WHOOP to Intervals.icu
@@ -43,6 +45,18 @@ jobs:
           INTERVALS_KEY: ${{ secrets.INTERVALS_KEY }}
           ATHLETE_ID: ${{ secrets.ATHLETE_ID }}
           SYNC_DAYS: ${{ inputs.sync_days || '3' }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
         run: python whoop_sync.py
+
+      - name: Commit rotated refresh token
+        run: |
+          if [ -f .whoop_refresh_token ]; then
+            git config --local user.email "github-actions[bot]@users.noreply.github.com"
+            git config --local user.name "github-actions[bot]"
+            git pull --rebase origin main || true
+            git add .whoop_refresh_token
+            if ! git diff --staged --quiet; then
+              git commit -m "Rotate WHOOP refresh token"
+              git push
+              echo "Committed rotated refresh token"
+            fi
+          fi

@@ -31,35 +31,41 @@ ATHLETE_ID = os.environ["ATHLETE_ID"]
 
 # ── WHOOP Auth ──────────────────────────────────
 
+def _read_refresh_token():
+    """Read refresh token from file (committed to repo) or env var."""
+    token_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".whoop_refresh_token")
+    if os.path.exists(token_file):
+        with open(token_file) as f:
+            token = f.read().strip()
+            if token:
+                return token
+    return WHOOP_REFRESH_TOKEN
+
+
+def _save_refresh_token(new_token):
+    """Save rotated refresh token to file and commit it."""
+    token_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".whoop_refresh_token")
+    with open(token_file, "w") as f:
+        f.write(new_token + "\n")
+    print(f"  Saved new refresh token to .whoop_refresh_token")
+
+
 def whoop_get_access_token():
     """Exchange refresh token for access token."""
+    refresh_token = _read_refresh_token()
     resp = requests.post(WHOOP_TOKEN_URL, data={
         "grant_type": "refresh_token",
-        "refresh_token": WHOOP_REFRESH_TOKEN,
+        "refresh_token": refresh_token,
         "client_id": WHOOP_CLIENT_ID,
         "client_secret": WHOOP_CLIENT_SECRET,
         "scope": "offline read:recovery read:sleep read:workout read:body_measurement read:cycles",
     }, timeout=15)
     resp.raise_for_status()
     tokens = resp.json()
-    new_refresh = tokens.get("refresh_token", WHOOP_REFRESH_TOKEN)
-    if new_refresh != WHOOP_REFRESH_TOKEN:
-        print(f"::warning::WHOOP refresh token rotated — update WHOOP_REFRESH_TOKEN secret.")
-        # Auto-update via gh CLI if available
-        gh_token = os.environ.get("GITHUB_TOKEN")
-        gh_repo = os.environ.get("GITHUB_REPOSITORY")
-        if gh_token and gh_repo:
-            import subprocess
-            result = subprocess.run(
-                ["gh", "secret", "set", "WHOOP_REFRESH_TOKEN",
-                 "--repo", gh_repo, "--body", new_refresh],
-                capture_output=True, text=True,
-                env={**os.environ, "GH_TOKEN": gh_token},
-            )
-            if result.returncode == 0:
-                print("  Auto-updated WHOOP_REFRESH_TOKEN secret.")
-            else:
-                print(f"  Failed to auto-update secret: {result.stderr}")
+    new_refresh = tokens.get("refresh_token", refresh_token)
+    if new_refresh != refresh_token:
+        print("  WHOOP refresh token rotated.")
+        _save_refresh_token(new_refresh)
     return tokens["access_token"]
 
 
