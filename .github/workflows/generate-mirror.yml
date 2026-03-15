@@ -1,0 +1,44 @@
+name: Generate Data Mirror
+
+on:
+  schedule:
+    # Run every 4 hours
+    - cron: '0 */4 * * *'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force regeneration'
+        required: false
+        default: 'true'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests python-dotenv
+
+      - name: Generate latest.json
+        env:
+          INTERVALS_API_KEY: ${{ secrets.INTERVALS_API_KEY }}
+          INTERVALS_ATHLETE_ID: ${{ secrets.INTERVALS_ATHLETE_ID }}
+          INTERVALS_API_BASE_URL: https://intervals.icu/api/v1
+        run: python generate_mirror.py --out latest.json
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add latest.json
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "Update latest.json — $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push
