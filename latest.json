@@ -14,7 +14,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-03-20T23:43:29.305097",
+    "last_updated": "2026-03-21T00:00:03.509356",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.6.5"
@@ -22,10 +22,10 @@
   "alerts": [
     {
       "metric": "acwr",
-      "value": 1.32,
-      "severity": "warning",
-      "threshold": "0.8 / 1.3",
-      "context": "ACWR 1.32 at edge of optimal range. Monitor closely. Alarm at 0.75/1.35.",
+      "value": 0.63,
+      "severity": "alarm",
+      "threshold": "0.75 / 1.35",
+      "context": "ACWR 0.63 outside safe range. Injury/overreach risk elevated.",
       "persistence_days": null,
       "tier": 2
     }
@@ -65,17 +65,17 @@
   },
   "current_status": {
     "fitness": {
-      "ctl": 49.08,
-      "atl": 53.51,
-      "tsb": -4.43,
-      "ramp_rate": 2.61,
+      "ctl": 47.93,
+      "atl": 46.39,
+      "tsb": 1.54,
+      "ramp_rate": -3.36,
       "fitness_source": "From Intervals.icu API (reflects completed workouts)"
     },
     "thresholds": {
-      "eftp": 226.6,
-      "w_prime": 19047,
+      "eftp": 226.3,
+      "w_prime": 19028,
       "w_prime_kj": 19.0,
-      "p_max": 797,
+      "p_max": 796,
       "vo2max": null,
       "sports": {
         "cycling": {
@@ -121,20 +121,20 @@
     "rhr_baseline_28d": 56.2,
     "latest_hrv": 32.0,
     "latest_rhr": 58,
-    "acwr": 1.32,
-    "acwr_interpretation": "caution",
-    "monotony": 0.74,
+    "acwr": 0.63,
+    "acwr_interpretation": "undertraining",
+    "monotony": 0.87,
     "monotony_interpretation": "normal",
     "primary_sport": "cycling",
-    "primary_sport_monotony": 0.74,
-    "primary_sport_tss_7d": 453.0,
-    "effective_monotony": 0.74,
+    "primary_sport_monotony": 0.87,
+    "primary_sport_tss_7d": 202.0,
+    "effective_monotony": 0.87,
     "multi_sport_detected": false,
-    "strain": 335.0,
-    "stress_tolerance": 4.5,
-    "load_recovery_ratio": 5.2,
-    "tss_7d_total": 453.0,
-    "tss_28d_total": 1372.0,
+    "strain": 176.0,
+    "stress_tolerance": 2.0,
+    "load_recovery_ratio": 2.3,
+    "tss_7d_total": 202.0,
+    "tss_28d_total": 1273.0,
     "zone_distribution_7d": {
       "z1_hours": 3.66,
       "z2_hours": 4.04,
@@ -223,11 +223,10 @@
     },
     "consistency_index": 1.0,
     "consistency_details": {
-      "planned_days": 3,
+      "planned_days": 2,
       "completed_days": 5,
-      "matched_days": 3,
+      "matched_days": 2,
       "planned_dates": [
-        "2026-03-14",
         "2026-03-17",
         "2026-03-18"
       ],
@@ -239,9 +238,10 @@
         "2026-03-19"
       ]
     },
-    "phase_detected": "Indeterminate",
+    "phase_detected": "Taper",
     "phase_triggers": [
-      "Insufficient data for phase detection"
+      "TSB 1.54 positive",
+      "CTL stable/declining"
     ],
     "seasonal_context": "Late Base / Build",
     "benchmark_indoor": {
@@ -258,19 +258,19 @@
       "benchmark_percentage": null,
       "seasonal_expected": null
     },
-    "eftp": 226.6,
-    "w_prime": 19047,
+    "eftp": 226.3,
+    "w_prime": 19028,
     "w_prime_kj": 19.0,
-    "p_max": 797,
+    "p_max": 796,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-03-20T23:43:29.304198",
+    "calculation_timestamp": "2026-03-21T00:00:03.508388",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
       "activities_7d": 8,
       "activities_28d": 27,
-      "planned_workouts_7d": 4,
+      "planned_workouts_7d": 3,
       "ftp_history_days": {
         "indoor": 0,
         "outdoor": 0
@@ -1152,15 +1152,26 @@
       "duration_hours": 1.75,
       "duration_formatted": "1h45m",
       "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 4\u00d715m @218W / 5m rec | 12m @126W"
+    },
+    {
+      "id": 96510401,
+      "date": "2026-05-02",
+      "name": "Massive Volume Saturday by LeCoach App",
+      "type": "WORKOUT",
+      "planned_tss": 210,
+      "duration_hours": 5.0,
+      "duration_formatted": "5h",
+      "workout_summary": null,
+      "description_preview": "-300m 65% FTP"
     }
   ],
   "workout_summary_stats": {
-    "attempted": 26,
+    "attempted": 27,
     "success": 7,
     "patternA": 7,
     "patternB": 0,
     "bail_no_workout_doc": 5,
-    "bail_no_match": 19
+    "bail_no_match": 20
   },
   "weekly_summary": {
     "total_training_hours": 9.83,
