@@ -53,6 +53,10 @@ def _save_refresh_token(new_token):
 def whoop_get_access_token():
     """Exchange refresh token for access token."""
     refresh_token = _read_refresh_token()
+    token_source = "file" if os.path.exists(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), ".whoop_refresh_token")
+    ) else "env"
+    print(f"  Using refresh token from: {token_source} (ends ...{refresh_token[-8:]})")
     resp = requests.post(WHOOP_TOKEN_URL, data={
         "grant_type": "refresh_token",
         "refresh_token": refresh_token,
@@ -60,7 +64,31 @@ def whoop_get_access_token():
         "client_secret": WHOOP_CLIENT_SECRET,
         "scope": "offline read:recovery read:sleep read:workout read:body_measurement read:cycles",
     }, timeout=15)
-    resp.raise_for_status()
+    if resp.status_code != 200:
+        print(f"  Token exchange FAILED: {resp.status_code}")
+        print(f"  Response: {resp.text[:500]}")
+        print(f"  Hint: refresh token may be expired — re-authorize at")
+        print(f"  https://app.whoop.com/oauth/authorize?client_id={WHOOP_CLIENT_ID}"
+              f"&redirect_uri=http://localhost:8080&response_type=code"
+              f"&scope=offline+read:recovery+read:sleep+read:workout+read:body_measurement+read:cycles")
+        # If file token failed, try env var as fallback
+        if token_source == "file" and refresh_token != WHOOP_REFRESH_TOKEN:
+            print(f"\n  Retrying with env var token (ends ...{WHOOP_REFRESH_TOKEN[-8:]})...")
+            resp = requests.post(WHOOP_TOKEN_URL, data={
+                "grant_type": "refresh_token",
+                "refresh_token": WHOOP_REFRESH_TOKEN,
+                "client_id": WHOOP_CLIENT_ID,
+                "client_secret": WHOOP_CLIENT_SECRET,
+                "scope": "offline read:recovery read:sleep read:workout read:body_measurement read:cycles",
+            }, timeout=15)
+            if resp.status_code == 200:
+                print("  Env var token worked! Saving as new file token.")
+                tokens = resp.json()
+                new_refresh = tokens.get("refresh_token", WHOOP_REFRESH_TOKEN)
+                _save_refresh_token(new_refresh)
+                return tokens["access_token"]
+            print(f"  Env var fallback also failed: {resp.status_code} {resp.text[:300]}")
+        resp.raise_for_status()
     tokens = resp.json()
     new_refresh = tokens.get("refresh_token", refresh_token)
     if new_refresh != refresh_token:
