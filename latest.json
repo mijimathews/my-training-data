@@ -14,7 +14,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-03-24T21:03:01.374511",
+    "last_updated": "2026-03-24T21:52:17.479562",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.6.5"
@@ -264,7 +264,7 @@
     "p_max": 795,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-03-24T21:03:01.373537",
+    "calculation_timestamp": "2026-03-24T21:52:17.478601",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -713,39 +713,6 @@
       "description": ""
     },
     {
-      "id": 96510388,
-      "date": "2026-03-31",
-      "name": "6x3m 118% FTP by LeCoach App",
-      "type": "WORKOUT",
-      "planned_tss": 124,
-      "duration_hours": 2.0,
-      "duration_formatted": "2h",
-      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 6\u00d73m @271W / 3m rec | 1h11m @138W",
-      "description": "-5m ramp 50-65% FTP\n\n3x\n-30s 100% FTP\n-30s 55% FTP\n\n-5m 60% FTP\n\n6x\n-3m 118% FTP\n-3m 55% FTP\n\n-71m 60% FTP"
-    },
-    {
-      "id": 97539807,
-      "date": "2026-03-31",
-      "name": "Steady Endurance by LeCoach App",
-      "type": "WORKOUT",
-      "planned_tss": 82,
-      "duration_hours": 2.0,
-      "duration_formatted": "2h",
-      "workout_summary": null,
-      "description": "-110m 65% FTP\n-10m 55% FTP"
-    },
-    {
-      "id": 96510389,
-      "date": "2026-04-01",
-      "name": "Build Aerobic by LeCoach App",
-      "type": "WORKOUT",
-      "planned_tss": 90,
-      "duration_hours": 2.0,
-      "duration_formatted": "2h",
-      "workout_summary": null,
-      "description_preview": "-110m 68% FTP\n-10m 55% FTP"
-    },
-    {
       "id": 96510352,
       "date": "2026-04-02",
       "name": "4x15m 95% FTP by LeCoach App",
@@ -1114,12 +1081,12 @@
     }
   ],
   "workout_summary_stats": {
-    "attempted": 28,
-    "success": 8,
-    "patternA": 8,
+    "attempted": 25,
+    "success": 7,
+    "patternA": 7,
     "patternB": 0,
     "bail_no_workout_doc": 4,
-    "bail_no_match": 20
+    "bail_no_match": 18
   },
   "weekly_summary": {
     "total_training_hours": 6.17,
