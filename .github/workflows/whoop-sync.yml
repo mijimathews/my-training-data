@@ -48,28 +48,37 @@ jobs:
         run: python whoop_sync.py
 
       - name: Persist rotated refresh token
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
         run: |
           if [ ! -f .whoop_refresh_token ]; then
             echo "No token file found"
             exit 0
           fi
 
+          NEW_TOKEN=$(cat .whoop_refresh_token | tr -d '[:space:]')
+
+          # Update GitHub secret first — this is the bulletproof backup
+          # Even if the git push fails, next run will have the valid token
+          gh secret set WHOOP_REFRESH_TOKEN --body "$NEW_TOKEN" -R "${{ github.repository }}"
+          echo "✓ Updated WHOOP_REFRESH_TOKEN secret"
+
+          # Also commit the token file to the repo
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .whoop_refresh_token
           if git diff --staged --quiet; then
-            echo "Token unchanged, nothing to commit"
+            echo "Token unchanged in file, nothing to commit"
             exit 0
           fi
           git commit -m "Rotate WHOOP refresh token"
 
-          # Retry push up to 5 times to handle concurrent auto-sync pushes
-          for i in 1 2 3 4 5; do
+          # Retry push up to 3 times (less critical now that secret is updated)
+          for i in 1 2 3; do
             git fetch origin main
-            git rebase origin/main && git push && echo "Push succeeded on attempt $i" && exit 0
+            git rebase origin/main && git push && echo "✓ Push succeeded on attempt $i" && exit 0
             git rebase --abort 2>/dev/null || true
-            echo "Push attempt $i failed, retrying in $((i * 5))s..."
-            sleep $((i * 5))
+            echo "Push attempt $i failed, retrying..."
+            sleep 5
           done
-          echo "::error::Failed to push rotated token after 5 attempts. Token will be stale on next run."
-          exit 1
+          echo "::warning::Git push failed but WHOOP_REFRESH_TOKEN secret was updated — next run will work"
