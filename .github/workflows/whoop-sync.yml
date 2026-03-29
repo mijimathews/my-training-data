@@ -3,7 +3,7 @@ name: WHOOP → Intervals.icu Sync
 on:
   schedule:
     # Run every 6 hours
-    - cron: '0 */6 * * *'
+    - cron: '7 */6 * * *'
   workflow_dispatch:
     inputs:
       sync_days:
@@ -47,16 +47,29 @@ jobs:
           SYNC_DAYS: ${{ inputs.sync_days || '3' }}
         run: python whoop_sync.py
 
-      - name: Commit rotated refresh token
+      - name: Persist rotated refresh token
         run: |
-          if [ -f .whoop_refresh_token ]; then
-            git config --local user.email "github-actions[bot]@users.noreply.github.com"
-            git config --local user.name "github-actions[bot]"
-            git pull --rebase origin main || true
-            git add .whoop_refresh_token
-            if ! git diff --staged --quiet; then
-              git commit -m "Rotate WHOOP refresh token"
-              git push
-              echo "Committed rotated refresh token"
-            fi
+          if [ ! -f .whoop_refresh_token ]; then
+            echo "No token file found"
+            exit 0
           fi
+
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add .whoop_refresh_token
+          if git diff --staged --quiet; then
+            echo "Token unchanged, nothing to commit"
+            exit 0
+          fi
+          git commit -m "Rotate WHOOP refresh token"
+
+          # Retry push up to 5 times to handle concurrent auto-sync pushes
+          for i in 1 2 3 4 5; do
+            git fetch origin main
+            git rebase origin/main && git push && echo "Push succeeded on attempt $i" && exit 0
+            git rebase --abort 2>/dev/null || true
+            echo "Push attempt $i failed, retrying in $((i * 5))s..."
+            sleep $((i * 5))
+          done
+          echo "::error::Failed to push rotated token after 5 attempts. Token will be stale on next run."
+          exit 1
