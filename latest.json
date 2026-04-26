@@ -14,7 +14,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-04-26T17:35:59.588695",
+    "last_updated": "2026-04-26T18:27:59.942601",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.6.5"
@@ -251,7 +251,7 @@
     "p_max": 914,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-04-26T17:35:59.587797",
+    "calculation_timestamp": "2026-04-26T18:27:59.941679",
     "data_quality": {
       "hrv_data_points": 7,
       "rhr_data_points": 7,
@@ -705,13 +705,13 @@
     {
       "id": 106585812,
       "date": "2026-04-28",
-      "name": "5x4m VO2max by LeCoach App",
+      "name": "5x4m VO2max Power by LeCoach App",
       "type": "WORKOUT",
-      "planned_tss": 71,
-      "duration_hours": 0.97,
-      "duration_formatted": "58m",
-      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 5\u00d74m @248W / 4m rec | 5m @138W",
-      "description": "-5m ramp 50-65% FTP\n\n3x\n-30s 100% FTP\n-30s 55% FTP\n\n-5m 60% FTP\n\n5x\n-4m 108% FTP\n-4m 55% FTP\n\n-5m 60% FTP"
+      "planned_tss": 99,
+      "duration_hours": 1.5,
+      "duration_formatted": "1h30m",
+      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 5\u00d74m @253W / 4m rec | 37m @149W",
+      "description": "-5m ramp 50-65% FTP\n\n3x\n-30s 100% FTP\n-30s 55% FTP\n\n-5m 60% FTP\n\n5x\n-4m 110% FTP\n-4m 55% FTP\n\n-37m 65% FTP"
     },
     {
       "id": 96510400,
@@ -751,11 +751,11 @@
       "date": "2026-04-30",
       "name": "3x15m Threshold by LeCoach App",
       "type": "WORKOUT",
-      "planned_tss": 93,
-      "duration_hours": 1.3,
-      "duration_formatted": "1h18m",
-      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 3\u00d715m @218W / 5m rec | 5m @138W",
-      "description": "-5m ramp 50-65% FTP\n\n3x\n-30s 100% FTP\n-30s 55% FTP\n\n-5m 60% FTP\n\n3x\n-15m 95% FTP\n-5m 55% FTP\n\n-5m 60% FTP"
+      "planned_tss": 102,
+      "duration_hours": 1.5,
+      "duration_formatted": "1h30m",
+      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 3\u00d715m @218W / 5m rec | 17m @138W",
+      "description": "-5m ramp 50-65% FTP\n\n3x\n-30s 100% FTP\n-30s 55% FTP\n\n-5m 60% FTP\n\n3x\n-15m 95% FTP\n-5m 55% FTP\n\n-17m 60% FTP"
     },
     {
       "id": 96510401,
@@ -847,12 +847,12 @@
     {
       "id": 106585818,
       "date": "2026-05-05",
-      "name": "5x4m VO2max by LeCoach App",
+      "name": "5x4m VO2max Power by LeCoach App",
       "type": "WORKOUT",
-      "planned_tss": 73,
-      "duration_hours": 0.97,
-      "duration_formatted": "58m",
-      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 5\u00d74m @253W / 4m rec | 5m @138W"
+      "planned_tss": 101,
+      "duration_hours": 1.5,
+      "duration_formatted": "1h30m",
+      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 5\u00d74m @257W / 4m rec | 37m @149W"
     },
     {
       "id": 96510362,
@@ -891,10 +891,10 @@
       "date": "2026-05-07",
       "name": "3x15m Threshold by LeCoach App",
       "type": "WORKOUT",
-      "planned_tss": 97,
-      "duration_hours": 1.3,
-      "duration_formatted": "1h18m",
-      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 3\u00d715m @223W / 5m rec | 5m @138W"
+      "planned_tss": 108,
+      "duration_hours": 1.5,
+      "duration_formatted": "1h30m",
+      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 3\u00d715m @225W / 5m rec | 17m @138W"
     },
     {
       "id": 96510404,
@@ -1125,10 +1125,10 @@
       "date": "2026-05-21",
       "name": "3x15m Threshold by LeCoach App",
       "type": "WORKOUT",
-      "planned_tss": 100,
-      "duration_hours": 1.3,
-      "duration_formatted": "1h18m",
-      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 3\u00d715m @227W / 5m rec | 5m @138W"
+      "planned_tss": 112,
+      "duration_hours": 1.5,
+      "duration_formatted": "1h30m",
+      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 3\u00d715m @230W / 5m rec | 17m @138W"
     },
     {
       "id": 96510411,
@@ -1242,12 +1242,12 @@
     {
       "id": 106585840,
       "date": "2026-05-26",
-      "name": "5x4m VO2max by LeCoach App",
+      "name": "6x4m VO2max Power by LeCoach App",
       "type": "WORKOUT",
-      "planned_tss": 78,
-      "duration_hours": 0.97,
-      "duration_formatted": "58m",
-      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 5\u00d74m @262W / 4m rec | 5m @138W"
+      "planned_tss": 112,
+      "duration_hours": 1.5,
+      "duration_formatted": "1h30m",
+      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 6\u00d74m @264W / 3m rec | 35m @149W"
     },
     {
       "id": 96510412,
@@ -1285,10 +1285,10 @@
       "date": "2026-05-28",
       "name": "3x15m Threshold by LeCoach App",
       "type": "WORKOUT",
-      "planned_tss": 104,
-      "duration_hours": 1.3,
-      "duration_formatted": "1h18m",
-      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 3\u00d715m @232W / 5m rec | 5m @138W"
+      "planned_tss": 116,
+      "duration_hours": 1.5,
+      "duration_formatted": "1h30m",
+      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 3\u00d715m @234W / 5m rec | 17m @138W"
     },
     {
       "id": 96510414,
