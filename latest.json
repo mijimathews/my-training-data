@@ -14,7 +14,7 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-05-03T23:41:23.704748",
+    "last_updated": "2026-05-04T01:20:18.953981",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.6.5"
@@ -65,11 +65,11 @@
   },
   "current_status": {
     "fitness": {
-      "ctl": 58.07,
-      "atl": 89.12,
-      "tsb": -31.05,
-      "ramp_rate": 5.21,
-      "fitness_source": "From Intervals.icu API (reflects completed workouts)"
+      "ctl": 56.7,
+      "atl": 77.26,
+      "tsb": -20.56,
+      "ramp_rate": 5.09,
+      "fitness_source": "Decayed from yesterday (today's planned workouts not yet completed)"
     },
     "thresholds": {
       "eftp": 223.2,
@@ -107,20 +107,20 @@
     "current_metrics": {
       "weight_kg": 87.997025,
       "resting_hr": 59,
-      "hrv": 35.6,
-      "sleep_quality": 4,
-      "sleep_hours": 7.14,
-      "sleep_formatted": "7h8m"
+      "hrv": null,
+      "sleep_quality": null,
+      "sleep_hours": null,
+      "sleep_formatted": null
     }
   },
   "derived_metrics": {
-    "recovery_index": 0.83,
-    "hrv_baseline_7d": 40.5,
-    "rhr_baseline_7d": 55.6,
-    "hrv_baseline_28d": 37.6,
-    "rhr_baseline_28d": 55.9,
-    "latest_hrv": 35.6,
-    "latest_rhr": 59,
+    "recovery_index": null,
+    "hrv_baseline_7d": 39.9,
+    "rhr_baseline_7d": 55.8,
+    "hrv_baseline_28d": 37.4,
+    "rhr_baseline_28d": 56.0,
+    "latest_hrv": null,
+    "latest_rhr": null,
     "acwr": 1.46,
     "acwr_interpretation": "caution",
     "monotony": 0.82,
@@ -132,7 +132,7 @@
     "multi_sport_detected": false,
     "strain": 446.0,
     "stress_tolerance": 5.4,
-    "load_recovery_ratio": 6.6,
+    "load_recovery_ratio": null,
     "tss_7d_total": 544.0,
     "tss_28d_total": 1486.0,
     "zone_distribution_7d": {
@@ -267,13 +267,13 @@
     "p_max": 914,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-05-03T23:41:23.703819",
+    "calculation_timestamp": "2026-05-04T01:20:18.953090",
     "data_quality": {
-      "hrv_data_points": 7,
-      "rhr_data_points": 7,
+      "hrv_data_points": 6,
+      "rhr_data_points": 6,
       "activities_7d": 9,
       "activities_28d": 30,
-      "planned_workouts_7d": 8,
+      "planned_workouts_7d": 10,
       "ftp_history_days": {
         "indoor": 0,
         "outdoor": 0
@@ -714,22 +714,6 @@
   ],
   "wellness_data": [
     {
-      "date": "2026-04-27",
-      "weight_kg": null,
-      "resting_hr": 54,
-      "hrv_rmssd": 43.78095,
-      "hrv_sdnn": null,
-      "sleep_hours": 6.74,
-      "sleep_formatted": "6h44m",
-      "sleep_quality": 2,
-      "sleep_score": 82.0,
-      "mental_energy": null,
-      "fatigue": null,
-      "soreness": null,
-      "avg_sleeping_hr": null,
-      "vo2max": null
-    },
-    {
       "date": "2026-04-28",
       "weight_kg": null,
       "resting_hr": 53,
@@ -824,31 +808,25 @@
       "soreness": null,
       "avg_sleeping_hr": null,
       "vo2max": null
+    },
+    {
+      "date": "2026-05-04",
+      "weight_kg": null,
+      "resting_hr": null,
+      "hrv_rmssd": null,
+      "hrv_sdnn": null,
+      "sleep_hours": null,
+      "sleep_formatted": null,
+      "sleep_quality": null,
+      "sleep_score": null,
+      "mental_energy": null,
+      "fatigue": null,
+      "soreness": null,
+      "avg_sleeping_hr": null,
+      "vo2max": null
     }
   ],
   "planned_workouts": [
-    {
-      "id": 96510402,
-      "date": "2026-05-03",
-      "name": "Sunday Long Endurance by LeCoach App",
-      "type": "WORKOUT",
-      "planned_tss": 45,
-      "duration_hours": 1.08,
-      "duration_formatted": "1h5m",
-      "workout_summary": null,
-      "description": "-65m 65% FTP"
-    },
-    {
-      "id": 107156488,
-      "date": "2026-05-03",
-      "name": "Neuromuscular Sprints by LeCoach App",
-      "type": "WORKOUT",
-      "planned_tss": 48,
-      "duration_hours": 1.07,
-      "duration_formatted": "1h4m",
-      "workout_summary": "5m @132W | 3\u00d730s @230W / 30s rec | 5m @138W | 6\u00d720s @402W / 4m rec | 25m @126W",
-      "description": "-5m ramp 50-65% FTP\n\n3x\n-30s 100% FTP\n-30s 55% FTP\n\n-5m 60% FTP\n\n6x\n-20s 175% FTP\n-4m 50% FTP\n\n-25m 55% FTP"
-    },
     {
       "id": 93689837,
       "date": "2026-05-04",
@@ -1001,7 +979,7 @@
       "duration_hours": 0.0,
       "duration_formatted": "0s",
       "workout_summary": null,
-      "description_preview": null
+      "description": ""
     },
     {
       "id": 96510376,
@@ -1548,23 +1526,45 @@
       "duration_formatted": "0s",
       "workout_summary": null,
       "description_preview": null
+    },
+    {
+      "id": 93690073,
+      "date": "2026-06-15",
+      "name": "Weekly",
+      "type": "TARGET",
+      "planned_tss": null,
+      "duration_hours": 0.0,
+      "duration_formatted": "0s",
+      "workout_summary": null,
+      "description_preview": null
+    },
+    {
+      "id": 93690111,
+      "date": "2026-06-15",
+      "name": "Recovery Week",
+      "type": "NOTE",
+      "planned_tss": null,
+      "duration_hours": 0.0,
+      "duration_formatted": "0s",
+      "workout_summary": null,
+      "description_preview": "Focus on easier efforts, reduced volume, and allowing your body to adapt to training stress"
     }
   ],
   "workout_summary_stats": {
-    "attempted": 51,
-    "success": 21,
-    "patternA": 21,
+    "attempted": 49,
+    "success": 20,
+    "patternA": 20,
     "patternB": 0,
-    "bail_no_workout_doc": 6,
-    "bail_no_match": 30
+    "bail_no_workout_doc": 7,
+    "bail_no_match": 29
   },
   "weekly_summary": {
     "total_training_hours": 9.68,
     "total_training_formatted": "9h40m",
     "total_tss": 544,
     "activities_count": 9,
-    "avg_hrv": 40.5,
-    "avg_resting_hr": 55.6
+    "avg_hrv": 39.9,
+    "avg_resting_hr": 55.8
   },
   "race_calendar": {
     "next_race": {
@@ -1572,7 +1572,7 @@
       "date": "2026-06-07",
       "category": "RACE_B",
       "type": "Ride",
-      "days_until": 35,
+      "days_until": 34,
       "moving_time_seconds": 25200,
       "distance_meters": 160935.0
     },
@@ -1582,7 +1582,7 @@
         "date": "2026-06-07",
         "category": "RACE_B",
         "type": "Ride",
-        "days_until": 35,
+        "days_until": 34,
         "moving_time_seconds": 25200,
         "distance_meters": 160935.0
       },
@@ -1591,7 +1591,7 @@
         "date": "2026-06-07",
         "category": "RACE_A",
         "type": "Ride",
-        "days_until": 35,
+        "days_until": 34,
         "moving_time_seconds": null,
         "distance_meters": 161000.0
       },
@@ -1600,7 +1600,7 @@
         "date": "2026-06-07",
         "category": "RACE_A",
         "type": "Ride",
-        "days_until": 35,
+        "days_until": 34,
         "moving_time_seconds": null,
         "distance_meters": 161000.0
       }
