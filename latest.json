@@ -6,7 +6,7 @@
   },
   "metadata": {
     "athlete_id": "i409124",
-    "last_updated": "2026-05-27T07:56:16.938562+00:00",
+    "last_updated": "2026-05-27T11:32:46.778175+00:00",
     "version": "3.7.0",
     "generator": "generate_mirror.py"
   },
@@ -42,21 +42,21 @@
     },
     "current_metrics": {
       "weight_kg": 88.0,
-      "resting_hr": null,
-      "hrv": null,
-      "sleep_quality": null,
+      "resting_hr": 57,
+      "hrv": 32.9,
+      "sleep_quality": 4,
       "sleep_hours": 0.0,
       "sleep_formatted": "0h00m"
     }
   },
   "derived_metrics": {
-    "recovery_index": 0.97,
-    "hrv_baseline_7d": 31.3,
-    "hrv_baseline_28d": 30.7,
-    "latest_hrv": 30.3,
-    "rhr_baseline_7d": 59,
-    "rhr_baseline_28d": 60.0,
-    "latest_rhr": 59,
+    "recovery_index": 1.073,
+    "hrv_baseline_7d": 32.1,
+    "hrv_baseline_28d": 30.8,
+    "latest_hrv": 32.9,
+    "rhr_baseline_7d": 58,
+    "rhr_baseline_28d": 59.8,
+    "latest_rhr": 57,
     "tss_7d_total": 351,
     "tss_28d_total": 1784,
     "acwr": 0.787,
@@ -141,30 +141,30 @@
     ],
     "seasonal_context": "spring_build",
     "data_quality": {
-      "hrv_data_points": 13,
-      "rhr_data_points": 13,
+      "hrv_data_points": 14,
+      "rhr_data_points": 14,
       "activities_7d": 8,
       "activities_28d": 29,
       "planned_workouts_7d": 17
     },
-    "calculation_timestamp": "2026-05-27T07:56:16.938562+00:00"
+    "calculation_timestamp": "2026-05-27T11:32:46.778175+00:00"
   },
   "weekly_summary": {
     "total_training_hours": 6.58,
     "total_tss": 351,
-    "avg_hrv": 31.3,
-    "avg_rhr": 59
+    "avg_hrv": 32.1,
+    "avg_rhr": 58
   },
   "wellness_data": [
     {
       "date": "2026-05-27",
       "weight_kg": null,
-      "resting_hr": null,
-      "hrv_rmssd": null,
+      "resting_hr": 57,
+      "hrv_rmssd": 32.9,
       "hrv_sdnn": null,
       "sleep_hours": 0.0,
       "sleep_formatted": "0h00m",
-      "sleep_quality": null,
+      "sleep_quality": 4,
       "sleep_score": null,
       "fatigue": null,
       "soreness": null,
