@@ -14,35 +14,16 @@
   },
   "metadata": {
     "athlete_id": "REDACTED",
-    "last_updated": "2026-06-07T23:34:57.758223",
+    "last_updated": "2026-06-08T01:59:37.690491",
     "data_range_days": 7,
     "extended_range_days": 28,
     "version": "3.6.5"
   },
-  "alerts": [
-    {
-      "metric": "race_week",
-      "value": 0,
-      "severity": "info",
-      "threshold": "RACE_A within 7 days",
-      "context": "Race week D-0 of 'Highlands Gran Fondo by LeCoach App'. Today: Race day, 0-0 TSS. Race effort",
-      "persistence_days": null,
-      "tier": 1
-    },
-    {
-      "metric": "race_week_tsb",
-      "value": -38.6,
-      "severity": "warning",
-      "threshold": "TSB target 10-25",
-      "context": "Projected race-day TSB -38.6 is below target range 10-25. Consider additional rest to reach target.",
-      "persistence_days": null,
-      "tier": 1
-    }
-  ],
+  "alerts": [],
   "history": {
     "available": true,
     "last_generated": "2026-05-10",
-    "age_days": 28,
+    "age_days": 29,
     "total_months": 35,
     "history_confidence": "high"
   },
@@ -74,11 +55,11 @@
   },
   "current_status": {
     "fitness": {
-      "ctl": 63.7,
-      "atl": 102.27,
-      "tsb": -38.57,
-      "ramp_rate": 5.32,
-      "fitness_source": "From Intervals.icu API (reflects completed workouts)"
+      "ctl": 62.2,
+      "atl": 88.66,
+      "tsb": -26.46,
+      "ramp_rate": 5.2,
+      "fitness_source": "Decayed from yesterday (today's planned workouts not yet completed)"
     },
     "thresholds": {
       "eftp": 219.6,
@@ -116,20 +97,20 @@
     "current_metrics": {
       "weight_kg": 87.9969,
       "resting_hr": 60,
-      "hrv": 29.0879,
-      "sleep_quality": 2,
-      "sleep_hours": 6.69,
-      "sleep_formatted": "6h41m"
+      "hrv": null,
+      "sleep_quality": null,
+      "sleep_hours": null,
+      "sleep_formatted": null
     }
   },
   "derived_metrics": {
-    "recovery_index": 0.86,
-    "hrv_baseline_7d": 32.5,
-    "rhr_baseline_7d": 57.9,
+    "recovery_index": null,
+    "hrv_baseline_7d": 30.7,
+    "rhr_baseline_7d": 58.5,
     "hrv_baseline_28d": 32.2,
-    "rhr_baseline_28d": 61.5,
-    "latest_hrv": 29.0879,
-    "latest_rhr": 60,
+    "rhr_baseline_28d": 61.6,
+    "latest_hrv": null,
+    "latest_rhr": null,
     "acwr": 1.19,
     "acwr_interpretation": "optimal",
     "monotony": 0.46,
@@ -141,7 +122,7 @@
     "multi_sport_detected": false,
     "strain": 257.0,
     "stress_tolerance": 5.6,
-    "load_recovery_ratio": 6.5,
+    "load_recovery_ratio": null,
     "tss_7d_total": 558.0,
     "tss_28d_total": 1869.0,
     "zone_distribution_7d": {
@@ -275,13 +256,13 @@
     "p_max": 899,
     "power_model_source": "wellness.sportInfo",
     "vo2max": null,
-    "calculation_timestamp": "2026-06-07T23:34:57.757237",
+    "calculation_timestamp": "2026-06-08T01:59:37.689591",
     "data_quality": {
-      "hrv_data_points": 7,
-      "rhr_data_points": 7,
+      "hrv_data_points": 6,
+      "rhr_data_points": 6,
       "activities_7d": 5,
-      "activities_28d": 26,
-      "planned_workouts_7d": 14,
+      "activities_28d": 25,
+      "planned_workouts_7d": 15,
       "ftp_history_days": {
         "indoor": 0,
         "outdoor": 0
@@ -533,22 +514,6 @@
   ],
   "wellness_data": [
     {
-      "date": "2026-06-01",
-      "weight_kg": null,
-      "resting_hr": 54,
-      "hrv_rmssd": 43.23489,
-      "hrv_sdnn": null,
-      "sleep_hours": 6.78,
-      "sleep_formatted": "6h46m",
-      "sleep_quality": 1,
-      "sleep_score": 89.0,
-      "mental_energy": null,
-      "fatigue": null,
-      "soreness": null,
-      "avg_sleeping_hr": null,
-      "vo2max": null
-    },
-    {
       "date": "2026-06-02",
       "weight_kg": null,
       "resting_hr": 53,
@@ -643,53 +608,25 @@
       "soreness": null,
       "avg_sleeping_hr": null,
       "vo2max": null
+    },
+    {
+      "date": "2026-06-08",
+      "weight_kg": null,
+      "resting_hr": null,
+      "hrv_rmssd": null,
+      "hrv_sdnn": null,
+      "sleep_hours": null,
+      "sleep_formatted": null,
+      "sleep_quality": null,
+      "sleep_score": null,
+      "mental_energy": null,
+      "fatigue": null,
+      "soreness": null,
+      "avg_sleeping_hr": null,
+      "vo2max": null
     }
   ],
   "planned_workouts": [
-    {
-      "id": 93689513,
-      "date": "2026-06-07",
-      "name": "highlands gran fondo",
-      "type": "RACE_B",
-      "planned_tss": null,
-      "duration_hours": 7.0,
-      "duration_formatted": "7h",
-      "workout_summary": null,
-      "description": ""
-    },
-    {
-      "id": 96510420,
-      "date": "2026-06-07",
-      "name": "Highlands Gran Fondo by LeCoach App",
-      "type": "RACE_A",
-      "planned_tss": null,
-      "duration_hours": 0.0,
-      "duration_formatted": "0s",
-      "workout_summary": null,
-      "description": ""
-    },
-    {
-      "id": 106585836,
-      "date": "2026-06-07",
-      "name": "Gran Fondo by LeCoach App",
-      "type": "RACE_A",
-      "planned_tss": null,
-      "duration_hours": 0.0,
-      "duration_formatted": "0s",
-      "workout_summary": null,
-      "description": ""
-    },
-    {
-      "id": 106644599,
-      "date": "2026-06-07",
-      "name": "Recovery Aerobic by LeCoach App",
-      "type": "WORKOUT",
-      "planned_tss": 54,
-      "duration_hours": 1.5,
-      "duration_formatted": "1h30m",
-      "workout_summary": null,
-      "description": "-5m ramp 50-65% FTP\n\n-85m 60% FTP"
-    },
     {
       "id": 93690072,
       "date": "2026-06-08",
@@ -721,7 +658,7 @@
       "duration_hours": 0.0,
       "duration_formatted": "0s",
       "workout_summary": null,
-      "description_preview": null
+      "description": ""
     },
     {
       "id": 93690111,
@@ -732,7 +669,7 @@
       "duration_hours": 0.0,
       "duration_formatted": "0s",
       "workout_summary": null,
-      "description_preview": "Focus on easier efforts, reduced volume, and allowing your body to adapt to training stress"
+      "description": "Focus on easier efforts, reduced volume, and allowing your body to adapt to training stress"
     },
     {
       "id": 106639185,
@@ -1031,119 +968,43 @@
       "duration_formatted": "1h30m",
       "workout_summary": null,
       "description_preview": "-5m ramp 50-65% FTP\n-85m 60% FTP"
+    },
+    {
+      "id": 93690078,
+      "date": "2026-07-20",
+      "name": "Weekly",
+      "type": "TARGET",
+      "planned_tss": null,
+      "duration_hours": 0.0,
+      "duration_formatted": "0s",
+      "workout_summary": null,
+      "description_preview": null
     }
   ],
   "workout_summary_stats": {
-    "attempted": 24,
+    "attempted": 23,
     "success": 10,
     "patternA": 10,
     "patternB": 0,
     "bail_no_workout_doc": 2,
-    "bail_no_match": 14
+    "bail_no_match": 13
   },
   "weekly_summary": {
     "total_training_hours": 10.25,
     "total_training_formatted": "10h14m",
     "total_tss": 558,
     "activities_count": 5,
-    "avg_hrv": 32.5,
-    "avg_resting_hr": 57.9
+    "avg_hrv": 30.7,
+    "avg_resting_hr": 58.5
   },
   "race_calendar": {
-    "next_race": {
-      "name": "highlands gran fondo",
-      "date": "2026-06-07",
-      "category": "RACE_B",
-      "type": "Ride",
-      "days_until": 0,
-      "moving_time_seconds": 25200,
-      "distance_meters": 160935.0
-    },
-    "all_races": [
-      {
-        "name": "highlands gran fondo",
-        "date": "2026-06-07",
-        "category": "RACE_B",
-        "type": "Ride",
-        "days_until": 0,
-        "moving_time_seconds": 25200,
-        "distance_meters": 160935.0
-      },
-      {
-        "name": "Highlands Gran Fondo by LeCoach App",
-        "date": "2026-06-07",
-        "category": "RACE_A",
-        "type": "Ride",
-        "days_until": 0,
-        "moving_time_seconds": null,
-        "distance_meters": 161000.0
-      },
-      {
-        "name": "Gran Fondo by LeCoach App",
-        "date": "2026-06-07",
-        "category": "RACE_A",
-        "type": "Ride",
-        "days_until": 0,
-        "moving_time_seconds": null,
-        "distance_meters": 161000.0
-      }
-    ],
+    "next_race": null,
+    "all_races": [],
     "taper_alert": {
       "active": false
     },
     "race_week": {
-      "active": true,
-      "event_name": "Highlands Gran Fondo by LeCoach App",
-      "event_date": "2026-06-07",
-      "event_category": "RACE_A",
-      "event_type": "Ride",
-      "event_duration_class": "long_endurance",
-      "event_moving_time_seconds": null,
-      "days_until_event": 0,
-      "current_day": "D-0",
-      "ctl_baseline": 63.7,
-      "normal_weekly_tss": 445.9,
-      "race_week_tss_budget": {
-        "min": 178,
-        "max": 245
-      },
-      "race_week_tss_spent": 558,
-      "race_week_tss_remaining": {
-        "min": 0,
-        "max": 0
-      },
-      "projected_race_day_tsb": -38.6,
-      "tsb_target_range": {
-        "min": 10,
-        "max": 25
-      },
-      "today": {
-        "label": "Race day",
-        "load_target_tss": {
-          "min": 0,
-          "max": 0
-        },
-        "zones": "Race effort",
-        "purpose": "Go/no-go assessment. Execute race plan."
-      },
-      "carb_loading": {
-        "applicable": true,
-        "active": true,
-        "starts": "D-4",
-        "start_date": "2026-06-03",
-        "note": "10-12 g\u00b7kg\u207b\u00b9/day. No depletion phase needed."
-      },
-      "opener": {
-        "day": "D-2",
-        "date": "2026-06-05",
-        "intensity": "lighter"
-      },
-      "go_no_go": {
-        "tsb_status": "flag",
-        "notes": [
-          "Projected race-day TSB -38.6 is significantly below target range 10-25. Fatigue may impact performance."
-        ]
-      }
+      "active": false
     }
   }
 }
