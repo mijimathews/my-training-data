@@ -82,3 +82,25 @@ jobs:
             sleep 5
           done
           echo "::warning::Git push failed but WHOOP_REFRESH_TOKEN secret was updated — next run will work"
+
+      - name: Open issue on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+        run: |
+          gh issue create --repo "${{ github.repository }}" \
+            --title "WHOOP sync failed: $(date -u +'%Y-%m-%d %H:%M UTC')" \
+            --body "$(cat <<'EOF'
+          The WHOOP → Intervals.icu sync workflow failed.
+
+          **Failed run:** ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+
+          **Most common cause:** WHOOP refresh token expired or was invalidated.
+
+          **Fix:**
+          ```
+          cd ~/Projects/my-training-data && python3 whoop_auth.py
+          ```
+          Then run the printed `gh secret set WHOOP_REFRESH_TOKEN ...` command to update the GitHub secret.
+          EOF
+          )"
