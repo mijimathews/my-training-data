@@ -6,7 +6,7 @@
   },
   "metadata": {
     "athlete_id": "i409124",
-    "last_updated": "2026-06-20T10:26:37.281417+00:00",
+    "last_updated": "2026-06-20T13:41:34.471258+00:00",
     "version": "3.7.0",
     "generator": "generate_mirror.py"
   },
@@ -147,7 +147,7 @@
       "activities_28d": 29,
       "planned_workouts_7d": 6
     },
-    "calculation_timestamp": "2026-06-20T10:26:37.281417+00:00"
+    "calculation_timestamp": "2026-06-20T13:41:34.471258+00:00"
   },
   "weekly_summary": {
     "total_training_hours": 6.06,
